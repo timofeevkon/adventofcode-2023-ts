@@ -1,0 +1,13 @@
+services:
+  adventofcode-2023-ts.node:
+    image: node:slim
+    restart: always
+    working_dir: /var/www/html
+    env_file:
+      - .env
+    environment:
+      - UID=${USER_ID}
+    volumes:
+      - ./app/:/var/www/html
+      - ./mnt/:/mnt/data
+    tty: true

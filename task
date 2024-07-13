@@ -1,0 +1,2 @@
+#!/bin/sh
+docker-compose exec -u $(id -u) adventofcode-2023-ts.node node ./tasks/$1.js

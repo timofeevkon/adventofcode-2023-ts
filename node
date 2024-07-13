@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ ! -z "$@" ]]
+then
+  bash ./exec -c "adventofcode-2023-ts.node" "$@"
+else
+  bash ./exec -c "adventofcode-2023-ts.node" bash
+fi
