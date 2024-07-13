@@ -1,7 +1,7 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 
-fs.createReadStream('/mnt/1.csv')
+fs.createReadStream('/mnt/data/1.csv')
     .pipe(csv())
     .on('data', function(data){
         try {
