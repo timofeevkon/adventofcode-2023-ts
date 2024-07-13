@@ -2,18 +2,21 @@ const fs = require('fs');
 const csv = require('csv-parser');
 
 fs.createReadStream('/mnt/data/1.csv')
-    .pipe(csv())
     .on('data', function(data){
         try {
-            console.log("Name is: "+data.NAME);
-            console.log("Age is: "+data.AGE);
-
-            //perform the operation
+            let result = data.toString().match(/(-?\d+(\.\d+)?)/g).map(v => +v);
+            console.log(result);
+            // const sumOfNumbers = result.reduce((acc, number) => acc + number, 0);
+            // console.log(sumOfNumbers);
         }
         catch(err) {
-            //error handler
+            console.log('Fiasko!')
         }
     })
     .on('end',function(){
-        //some final operation
+        console.log('CSV file successfully processed');
     });
+
+
+// let result = data.match(/(-?\d+(\.\d+)?)/g).map(v => +v);
+// console.log(result);
