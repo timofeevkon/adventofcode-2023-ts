@@ -1,22 +1,8 @@
-const fs = require('fs');
-const csv = require('csv-parser');
+"use strict";
+const fs = require("fs");
+const path = require("node:path");
 
-fs.createReadStream('/mnt/data/1.csv')
-    .on('data', function(data){
-        try {
-            let result = data.toString().match(/(-?\d+(\.\d+)?)/g).map(v => +v);
-            console.log(result);
-            // const sumOfNumbers = result.reduce((acc, number) => acc + number, 0);
-            // console.log(sumOfNumbers);
-        }
-        catch(err) {
-            console.log('Fiasko!')
-        }
-    })
-    .on('end',function(){
-        console.log('CSV file successfully processed');
-    });
-
-
-// let result = data.match(/(-?\d+(\.\d+)?)/g).map(v => +v);
-// console.log(result);
+const input = String(fs.readFileSync(path.join('/mnt/data/1.csv'))).trim().split("\n");
+const result = input.map(e => Number(e.replace(/\D/g, "")[0] + e.replace(/\D/g, "")
+    .slice(-1))).reduce((a, b) => a + b);
+console.log("sum: " + result);
